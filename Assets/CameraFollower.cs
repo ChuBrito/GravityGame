@@ -7,7 +7,7 @@ public class CameraFollower : MonoBehaviour
 
     [SerializeField]
     Transform target;
-    public float smoothSpeed = 0.125f * Time.deltaTime; 
+    public float smoothSpeed = 0.125f; 
     public Vector3 offSet;
     private Vector3 velocity = Vector3.zero;
 
@@ -15,6 +15,7 @@ public class CameraFollower : MonoBehaviour
     void LateUpdate()
     {
         Vector3 desiredPosition = target.position + offSet;
-        Vector3 smoothedPosition = Vector3.SmoothDamp(target.position, desiredPosition, ref velocity, smoothSpeed); 
+        Vector3 smoothedPosition = Vector3.SmoothDamp(target.position, desiredPosition, ref velocity, (smoothSpeed * Time.deltaTime));
+
     }
 }
